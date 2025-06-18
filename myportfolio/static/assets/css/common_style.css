@@ -2479,19 +2479,5 @@ img.left {
     justify-content: flex-start !important; } }
 
 
-    /* Fix featured video height */
-.panel .img {
-  position: relative;
-  width: 100%;
-  height: 300px; /* adjust as needed */
-  overflow: hidden;
-}
-
-.panel .img video,
-.panel .img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
+    
 /* ====================== [ End Responsive ] ====================== */
