@@ -36,74 +36,106 @@
 
 <section class="work-card section-padding">
     <div class="container-xxl">
-        <div class="cards">
-            <div class="card-item">
-                <div class="img fit-img">
-                    <img src="{% static 'assets/imgs/works/1.jpg' %}" alt="">
-                    <div class="tags">
-                        <a href="#0">Django Development</a>
-                        <a href="#0">UI/UX</a>
-                        <a href="#0">SEO</a>
-                    </div>
-                    <h5 class="bottom left">
-                        <a>Web Design</a>
-                    </h5>
-                </div>
+      <div class="cards">
+        {% for project in latest_projects %}
+        <div class="card-item">
+          <a href="{{ project.get_absolute_url }}">
+            <div class="img fit-img">
+              {% if project.media %}
+                {% with project.media.url as media_url %}
+                  {% if media_url|is_video %}
+                    <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
+                      <source src="{{ media_url }}" type="video/mp4">
+                    </video>
+                  {% else %}
+                    <img src="{{ media_url }}" alt="{{ project.title }}">
+                  {% endif %}
+                {% endwith %}
+              {% endif %}
+              <div class="tags">
+                {% if project.category %}
+                  <a href="#0">{{ project.category }}</a>
+                {% endif %}
+                {% if project.client %}
+                  <a href="#0">{{ project.client }}</a>
+                {% endif %}
+                {% if project.designer %}
+                  <a href="#0">{{ project.designer }}</a>
+                {% endif %}
+              </div>
+              <h5 class="bottom left">
+                <a>{{ project.title }}</a>
+              </h5>
             </div>
-            <div class="card-item">
-                <div class="img fit-img">
-                    <img src="{% static 'assets/imgs/works/2.jpg' %}" alt="">
-                    <div class="tags">
-                        <a href="#0">Logo's</a>
-                        <a href="#0">Branding</a>
-                    </div>
-                    <h5 class="bottom right">
-                        <a>Graphic Design</a>
-                    </h5>
-                </div>
-            </div>
-            <div class="card-item">
-                <div class="img fit-img">
-                    <img src="{% static 'assets/imgs/works/3.jpg' %}" alt="">
-                    <div class="tags">
-                        <a href="#0">Portrait</a>
-                        <a href="#0">ifestyle</a>
-                    </div>
-                    <h5 class="top left">
-                        <a>Photography</a>
-                    </h5>
-                </div>
-            </div>
-            <div class="card-item">
-                <div class="img fit-img">
-                    <img src="{% static 'assets/imgs/works/4.jpg' %}" alt="">
-                    <div class="tags">
-                        <a href="#0">Lead Gen</a>
-                        <a href="#0">Email Campaign</a>
-                        <a href="#0">Social</a>
-                    </div>
-                    <h5 class="bottom left">
-                        <a>Digital Marketing</a>
-                    </h5>
-                </div>
-            </div>
+          </a>
         </div>
-        <!--
-        <div class="text-center mt-80">
-            <a href="../inner_pages/portfolio-cards.html" class="butn butn-md butn-bord butn-rounded">
-                <div class="d-flex align-items-center">
-                    <span>Check Our Portfolio</span>
-                    <span class="icon invert ml-10">
-                        <img src="{% static 'assets/imgs/icons/arrow-top-right.svg' %}" alt="">
-                    </span>
-                </div>
-            </a>
-        </div>
-    -->
+        {% endfor %}
+      </div>
     </div>
-</section>
+  </section>
+  
 
 <!-- ==================== End Portfolio ==================== -->
+<!-- ==================== Start marquee ==================== -->
+
+<section class="marq-sa section-padding">
+    <div class="main-marq shadow-off">
+        <div class="slide-har st1">
+            <div class="box">
+                <div class="item">
+                    <h2><span>User Centric Design</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <h2><span>AI-Driven Solutions</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <h2><span>Flexiable Price</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <h2><span>User Centric Design</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <h2><span>AI-Driven Solutions</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <h2><span>Flexiable Price</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="box">
+                <div class="item">
+                    <h2><span>User Centric Design</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <h2><span>AI-Driven Solutions</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <h2><span>Flexiable Price</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <h2><span>User Centric Design</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <h2><span>AI-Driven Solutions</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <h2><span>Flexiable Price</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 
@@ -176,7 +208,108 @@
 </section>
 
 <!-- ==================== End Intro ==================== -->
+<!-- ==================== Start services ==================== -->
 
+<section class="services-cst">
+    <div class="container-fluid">
+        <div class="light-bg section-padding radius-30">
+            <div class="container">
+                <div class="sec-head mb-80 pb-30 bord-thin-bottom">
+                    <div class="d-flex align-items-center">
+                        <h6 class="fz-40 text-u ls2 title-font">↳ Our Services</h6>
+                        
+                    </div>
+                </div>
+                <div class="item d-flex align-items-end justify-content-between">
+                    <div class="numb">
+                        <h6>01.</h6>
+                    </div>
+                    <div class="title js-splittext-lines">
+                        <h2>Branding</h2>
+                        <div class="list">
+                            <span>Brand Identity</span>
+                            <span>Logo Design</span>
+                            <span>Brand Strategy</span>
+                            <span>Art Direction</span>
+                        </div>
+                    </div>
+                    <div class="ml-auto">
+                        <div class="text-right">
+                            <div class="icon">
+                                <img src="{% static 'assets/imgs/icons/crown-solid.svg' %}" alt="crown icon">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item d-flex align-items-end justify-content-between">
+                    <div class="numb">
+                        <h6>02.</h6>
+                    </div>
+                    <div class="title">
+                        <h2>Web Design</h2>
+                        <div class="list">
+                            <span>UI</span>
+                            <span>UX</span>
+                            <span>DJango</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                    <div class="ml-auto">
+                        <div class="text-right">
+                            <div class="icon">
+                                <img src="{% static 'assets/imgs/icons/bezier-curve-solid.svg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item d-flex align-items-end justify-content-between">
+                    <div class="numb">
+                        <h6>03.</h6>
+                    </div>
+                    <div class="title">
+                        <h2>Development</h2>
+                        <div class="list">
+                            <span>Django</span>
+                            <span>Python</span>
+                            <span>Java</span>
+                            <span>HTML</span>
+                        </div>
+                    </div>
+                    <div class="ml-auto">
+                        <div class="text-right">
+                            <div class="icon">
+                                <img src="{% static 'assets/imgs/icons/code-solid.svg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item d-flex align-items-end justify-content-between">
+                    <div class="numb">
+                        <h6>04.</h6>
+                    </div>
+                    <div class="title">
+                        <h2>Growth</h2>
+                        <div class="list">
+                            <span>Digital Marketing</span>
+                            <span>Print Marketing</span>
+                            <span>SEO</span>
+                            <span>Public Relations</span>
+                        </div>
+                    </div>
+                    <div class="ml-auto">
+                        <div class="text-right">
+                            <div class="icon">
+                                <img src="{% static 'assets/imgs/icons/chart-line-solid.svg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End services ==================== -->
 
 
 

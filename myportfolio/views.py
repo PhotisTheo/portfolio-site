@@ -5,13 +5,22 @@ from .models import Project
 
 def home(request):
     featured_projects = Project.objects.filter(featured=True)
+    latest_projects = Project.objects.exclude(media="").order_by("-start_date")[:4]
     return render(
-        request, "portfolio/home.html", {"featured_projects": featured_projects}
+        request,
+        "portfolio/home.html",
+        {
+            "featured_projects": featured_projects,
+            "latest_projects": latest_projects,
+        },
     )
 
 
+from .models import Project
+
+
 def portfolio(request):
-    projects = Project.objects.all().order_by("-date_created")
+    projects = Project.objects.all().order_by("-start_date")  # Newest first
     return render(request, "portfolio/portfolio.html", {"projects": projects})
 
 
