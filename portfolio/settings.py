@@ -39,7 +39,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "insecure-default-for-dev")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "portfolio-site-production-759f.up.railway.app",
+    "www.photistheo.com",
+]
 
 
 # Application definition
