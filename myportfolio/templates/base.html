@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="HTML5 Template Hubfolio Multi-Purpose themeforest">
+    <meta name="description" content="Hubfolio - Multi-Purpose HTML5 Template">
+    <meta name="author" content="">
+
+    <!-- Title  -->
+    <title>Illuminate</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/imgs/ilogo2.svg' %}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Six+Caps&display=swap" rel="stylesheet">
+
+    <!-- Plugins -->
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
+
+    <!-- Core Style Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/common_style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/home8-style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/inner_pages.css' %}">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Themify Icons CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/themify-icons/1.0.1/css/themify-icons.css">
+
+    <link rel="stylesheet" href="{% static 'assets/css/chat.css' %}">
+    <!-- Trix Editor CSS/JS -->
+    
+    
+
+
+
+</head>
+
+<body>
+
+
+
+    <!-- ==================== Start Loading ==================== -->
+
+    <div class="loader-wrap">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path id="svg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+        </svg>
+
+        <div class="loader-wrap-heading">
+            <div class="load-text">
+                <span>L</span>
+                <span>o</span>
+                <span>a</span>
+                <span>d</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== End Loading ==================== -->
+
+
+    <div class="cursor"></div>
+
+
+    <!-- ==================== Start progress-scroll-button ==================== -->
+
+    <div class="progress-wrap cursor-pointer">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+
+    <!-- ==================== End progress-scroll-button ==================== -->
+
+
+<!-- ==================== Start Navbar ==================== -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="logo" href="{% url 'homepage' %}">
+            <img src="{% static 'assets/imgs/ilogo.svg' %}" alt="logo">
+        </a>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/' %}active{% endif %}"
+                        href="{% url 'homepage' %}">Home</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}"
+                        href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}"
+                        href="{% url 'portfolio' %}">Portfolio</a>
+                </li>
+                
+            </ul>
+        </div>
+
+        <div class="topnav d-flex align-items-center">
+            <a href="{% url 'contact' %}" class="butn butn-rounded">
+                <div class="d-flex align-items-center">
+                    <span>Start Project</span>
+                    <span class="icon ml-10">
+                        <img src="{% static 'assets/imgs/arrow-top-right.jpg' %}" alt="">
+                    </span>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+
+    <!-- ==================== End Navbar ==================== -->
+
+    <div id="smooth-wrapper">
+
+
+        <div id="smooth-content">
+
+            <main>
+
+
+
+
+
+
+                {% block content %}
+
+                {% endblock %}
+
+            </main>
+
+
+
+            <!-- ==================== Start Footer ==================== -->
+
+            <footer class="footer-sa pb-80">
+                <div class="container section-padding bord-thin-top-light">
+                    <div class="call-action text-center mb-80">
+                        <h2 class="">
+                            <a href="#0">Let's Make <br> Something Great!</a>
+                            <div class="buton d-flex align-items-center justify-content-center">
+                                <a href="/contact">
+                                    <span class="mb-10">Contact</span> <br> <span>Us <img
+                                            src="{% static  'assets/imgs/icons/arrow-top-right.svg' %}" alt=""></span>
+                                </a>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="contact-info">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <a href="/" class="logo md-mb50">
+                                    <img src="{% static 'assets/imgs/ilogo.svg' %}" alt="">
+                                </a>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="item">
+                                            <span class="sub-color">location</span>
+                                            <p>Rowley MA</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 d-flex justify-content-end justify-end">
+                                        <div class="item">
+                                            <span class="sub-color">inquiry</span>
+                                            <p>photisgtheodorou@gmail.com</p>
+                                            <p>9784949089</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </footer>
+
+            <!-- ==================== End Footer ==================== -->
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/lib/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery-migrate-3.4.0.min.js' %}"></script>
+
+    <!-- plugins -->
+    <script src="{% static 'assets/js/lib/plugins.js' %}"></script>
+
+    <!-- GSAP -->
+    <script src="{% static 'assets/js/gsap_lib/gsap.min.js' %}"></script>
+    <script src="{% static 'assets/js/gsap_lib/ScrollSmoother.min.js' %}"></script>
+    <script src="{% static 'assets/js/gsap_lib/ScrollTrigger.min.js' %}"></script>
+    <script src="{% static 'assets/js/gsap_lib/SplitText.min.js' %}"></script>
+
+    <!-- common scripts -->
+    <script src="{% static 'assets/js/common_scripts.js' %}"></script>
+
+    <!-- custom scripts -->
+    <script src="{% static 'assets/js/hscroll.js' %}"></script>
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+    <script src="{% static 'assets/js/chat.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

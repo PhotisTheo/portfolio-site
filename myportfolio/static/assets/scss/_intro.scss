@@ -1,0 +1,45 @@
+/* --------------- Intro --------------- */
+
+.intro-cst{
+
+    .states{
+
+        .item{
+            position: relative;
+            padding-left: 60px;
+    
+            &:before{
+                content: '';
+                position: absolute;
+                top: 10px;
+                left: 0;
+                width: 40px;
+                border-bottom: 1px solid rgba(255,255,255,.1);
+            }
+    
+            &:after{
+                content: '';
+                position: absolute;
+                top: 10px;
+                left: 0;
+                bottom: 0;
+                border-left: 1px solid rgba(255,255,255,.1);
+            }
+    
+            span{
+                font-size: 16px;
+                color: #aaa;
+            }
+    
+            h2{
+                font-size: 140px;
+                line-height: 1;
+                margin-top: 40px;
+            }
+    
+            .spn-botm{
+                margin-left: 10px;
+            }
+        }
+    }
+}

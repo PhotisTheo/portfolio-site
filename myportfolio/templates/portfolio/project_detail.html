@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% load static %}
+{% load media_filters %}
+{% block content %}
+
+<!-- Project Header -->
+<header class="work-hed2 section-padding pb-0">
+    <div class="container">
+        <div class="caption sec-head text-center mb-80">
+            <span class="sub-head mb-10">{{ project.subtitle }}</span>
+            <h1 class="fz-80 fw-600">{{ project.title }}</h1>
+        </div>
+
+        <div class="info mb-80 text-center">
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="item mb-30">
+                        <span class="opacity-8 mb-10">Category</span>
+                        <h6>{{ project.category }}</h6>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="item mb-30">
+                        <span class="opacity-8 mb-10">Client</span>
+                        <h6>{{ project.client }}</h6>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="item mb-30">
+                        <span class="opacity-8 mb-10">Start Date</span>
+                        <h6>{{ project.start_date }}</h6>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="item">
+                        <span class="opacity-8 mb-10">Designer</span>
+                        <h6>{{ project.designer }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="fit-img radius-15">
+            {% if project.media %}
+                {% if project.media.url|lower|slice:"-4:" == ".mp4" %}
+                    <video autoplay muted loop playsinline style="width: 100%; height: auto; object-fit: cover;">
+                        <source src="{{ project.media.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% else %}
+                    <img src="{{ project.media.url }}" alt="{{ project.title }}" data-lag="0" data-speed="0.5">
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+
+<!-- Project Content -->
+<section class="proj-details section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div><h2>Project Overview</h2></div>
+            </div>
+            <div class="col-lg-7">
+                <div class="content">
+                    <div class="text mt-30 mb-30">
+                        <p>{{ project.body|linebreaks }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Project Image Gallery -->
+<div class="container">
+    <div class="row sm-marg mt-80">
+        {% if project.gallery_image_1 %}
+        <div class="col-md-6">
+            <div class="img sm-mb10">
+                <img src="{{ project.gallery_image_1.url }}" alt="">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if project.gallery_image_2 %}
+        <div class="col-md-6">
+            <div class="img">
+                <img src="{{ project.gallery_image_2.url }}" alt="">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if project.gallery_image_3 %}
+        <div class="col-md-12">
+            <div class="img mt-10">
+                <img src="{{ project.gallery_image_3.url }}" alt="">
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Extra Section with Accordion (Dark Mode) -->
+<div class="container">
+    <div class="row justify-content-between mt-80 bg-black text-white py-5">
+        <div class="col-lg-5 valign">
+            <div class="content">
+                <h3 class="text-white">{{ project.extra_title }}</h3>
+                <div class="text mt-30">
+                    <p class="text-light">{{ project.extra_paragraph }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="content">
+                <div class="accordion" id="accordionExample">
+
+                    {% if project.accordion_1_title %}
+                    <div class="accordion-item bg-black border-0">
+                        <h2 class="accordion-header" id="heading1">
+                            <button class="accordion-button bg-black text-white" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                <span class="me-2 text-success">1.</span>{{ project.accordion_1_title }}
+                            </button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                            <div class="accordion-body text-light">
+                                <p>{{ project.accordion_1_body }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if project.accordion_2_title %}
+                    <div class="accordion-item bg-black border-0">
+                        <h2 class="accordion-header" id="heading2">
+                            <button class="accordion-button bg-black text-white collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                <span class="me-2 text-success">2.</span>{{ project.accordion_2_title }}
+                            </button>
+                        </h2>
+                        <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                            <div class="accordion-body text-light">
+                                <p>{{ project.accordion_2_body }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if project.accordion_3_title %}
+                    <div class="accordion-item bg-black border-0">
+                        <h2 class="accordion-header" id="heading3">
+                            <button class="accordion-button bg-black text-white collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                <span class="me-2 text-success">3.</span>{{ project.accordion_3_title }}
+                            </button>
+                        </h2>
+                        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordionExample">
+                            <div class="accordion-body text-light">
+                                <p>{{ project.accordion_3_body }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

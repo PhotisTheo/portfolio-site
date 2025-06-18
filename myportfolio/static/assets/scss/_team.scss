@@ -1,0 +1,61 @@
+/* --------------- Contact --------------- */
+
+.team-cst{
+
+	.thecontainer {
+		width: 200vw;
+        padding-top: 140px;
+		display: flex;
+		flex-wrap: nowrap;
+	}
+	
+	.panel {
+		display: flex;
+		height: 100%;
+		flex: 1;
+		justify-content: flex-end;
+		align-items: center;
+
+        &:nth-of-type(even){
+
+            .item{
+                transform: translateY(-20px);
+            }
+        }
+	
+		.item{
+			width: 25vw;
+            position: relative;
+            transform: translateY(20px);
+
+            .img{
+                filter: grayscale(1);
+                transition: all .4s;
+            }
+
+            .cont{
+                margin-top: 30px;
+
+                h5{
+                    font-size: 24px;
+                    font-weight: 500;
+                }
+
+                span{
+                    font-size: 15px;
+                    font-weight: 300;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    opacity: .75;
+                }
+            }
+
+            &:hover{
+
+                .img{
+                    filter: grayscale(0);
+                }
+            }
+		}
+	}
+}

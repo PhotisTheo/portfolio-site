@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load media_filters %}
+{% load custom_filters %}
+
+{% block content %}
+
+<!-- ==================== Start Header ==================== -->
+
+<header class="header-cst">
+    <div class="container-fluid">
+        <div class="row sm-marg">
+            <div class="col-lg-6">
+                <div class="fit-img img">
+                    <img src="{% static 'assets/imgs/header/3.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="fit-img img md-hide">
+                    <img src="{% static 'assets/imgs/header/4.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="caption text-center">
+            <h1 class="title-font"> ILLUMINATE </h1>
+            <h4 class="mt-30 fw-300">Your Creative Presence, <br> Bring your Brand to Light with Us
+            </h4>
+        </div>
+    </div>
+</header>
+
+<!-- ==================== End Header ==================== -->
+
+
+<!-- ==================== Start Portfolio ==================== -->
+
+<section class="work-card section-padding">
+    <div class="container-xxl">
+        <div class="cards">
+            <div class="card-item">
+                <div class="img fit-img">
+                    <img src="{% static 'assets/imgs/works/1.jpg' %}" alt="">
+                    <div class="tags">
+                        <a href="#0">Django Development</a>
+                        <a href="#0">UI/UX</a>
+                        <a href="#0">SEO</a>
+                    </div>
+                    <h5 class="bottom left">
+                        <a>Web Design</a>
+                    </h5>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="img fit-img">
+                    <img src="{% static 'assets/imgs/works/2.jpg' %}" alt="">
+                    <div class="tags">
+                        <a href="#0">Logo's</a>
+                        <a href="#0">Branding</a>
+                    </div>
+                    <h5 class="bottom right">
+                        <a>Graphic Design</a>
+                    </h5>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="img fit-img">
+                    <img src="{% static 'assets/imgs/works/3.jpg' %}" alt="">
+                    <div class="tags">
+                        <a href="#0">Portrait</a>
+                        <a href="#0">ifestyle</a>
+                    </div>
+                    <h5 class="top left">
+                        <a>Photography</a>
+                    </h5>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="img fit-img">
+                    <img src="{% static 'assets/imgs/works/4.jpg' %}" alt="">
+                    <div class="tags">
+                        <a href="#0">Lead Gen</a>
+                        <a href="#0">Email Campaign</a>
+                        <a href="#0">Social</a>
+                    </div>
+                    <h5 class="bottom left">
+                        <a>Digital Marketing</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="text-center mt-80">
+            <a href="../inner_pages/portfolio-cards.html" class="butn butn-md butn-bord butn-rounded">
+                <div class="d-flex align-items-center">
+                    <span>Check Our Portfolio</span>
+                    <span class="icon invert ml-10">
+                        <img src="{% static 'assets/imgs/icons/arrow-top-right.svg' %}" alt="">
+                    </span>
+                </div>
+            </a>
+        </div>
+    -->
+    </div>
+</section>
+
+<!-- ==================== End Portfolio ==================== -->
+
+
+
+<!-- ==================== Start Intro ==================== -->
+
+<section class="intro-cst section-padding pt-0">
+    <div class="container">
+        <div class="sec-head mb-80 pb-30 bord-thin-bottom-light">
+            <div class="d-flex align-items-center">
+                <h6 class="fz-40 text-u ls2 title-font">↳ About Me</h6>
+                <!--
+                <div class="ml-auto">
+                    <a href="../inner_pages/about.html" class="butn butn-md butn-bord butn-rounded">
+                        <div class="d-flex align-items-center">
+                            <span>View More</span>
+                            <span class="icon invert ml-10">
+                                <img src="{% static 'assets/imgs/icons/arrow-top-right.svg' %}" alt="">
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            -->
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-lg-9">
+                <div class="text mb-80 wow fadeInUp slow" data-wow-delay="0.2s">
+                    <h5>I'm Photis Theodorou—a graphic designer, web developer, photographer, 
+                        and digital marketer with over 5 years of experience bringing brands and ideas to life. 
+                        My passion lies in creating visually compelling designs, intuitive websites, 
+                        and captivating photography that not only stand out but also deliver measurable results. 
+                        Combining technical expertise with a keen creative eye, I craft cohesive digital experiences 
+                        that engage audiences, elevate brands, and drive success. 
+                        Let's collaborate to turn your vision into reality.</h5>
+                </div>
+                <div class="states">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="item sm-mb30 wow fadeInUp slow" data-wow-delay="0.2s">
+                                <span>Established for</span>
+                                <div class="d-flex align-items-end">
+                                    <h2 class="title-font">05</h2>
+                                    <span class="spn-botm">Years</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="item sm-mb30 wow fadeInUp slow" data-wow-delay="0.4s">
+                                <span>Work Across</span>
+                                <div class="d-flex align-items-end">
+                                    <h2 class="title-font">2</h2>
+                                    <span class="spn-botm">Countries</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="item wow fadeInUp slow" data-wow-delay="0.6s">
+                                <span>Over</span>
+                                <div class="d-flex align-items-end">
+                                    <h2 class="title-font">80+</h2>
+                                    <span class="spn-botm">Project</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Intro ==================== -->
+
+
+
+
+
+<!-- ==================== Start Team ==================== -->
+<section class="team-cst section-padding">
+    <div class="container">
+        <div class="sec-head pb-30 bord-thin-bottom-light">
+            <div class="d-flex align-items-center">
+                <h6 class="fz-40 text-u ls2 title-font">↳ Featured Projects</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="thecontainer">
+        {% for project in featured_projects %}
+        <div class="panel">
+            <a href="{{ project.get_absolute_url }}">
+                <div class="item">
+                    <div class="img">
+                        {% if project.featured_media %}
+                            {% with project.featured_media.url as media_url %}
+                                {% if media_url|is_video %}
+                                    <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
+                                        <source src="{{ media_url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% else %}
+                                    <img src="{{ media_url }}" alt="{{ project.title }}">
+                                {% endif %}
+                            {% endwith %}
+                        {% elif project.media %}
+                            {% with project.media.url as media_url %}
+                                {% if media_url|is_video %}
+                                    <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
+                                        <source src="{{ media_url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% else %}
+                                    <img src="{{ media_url }}" alt="{{ project.title }}">
+                                {% endif %}
+                            {% endwith %}
+                        {% endif %}
+                    </div>
+                    <div class="cont d-flex align-items-end">
+                        <div>
+                            <h5>{{ project.title }}</h5>
+                        </div>
+                        <div class="ml-auto">
+                            <span>{{ project.category }}</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+<!-- ==================== End Team ==================== -->
+
+
+
+
+
+
+
+{% endblock %}
