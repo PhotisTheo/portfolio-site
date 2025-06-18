@@ -45,6 +45,10 @@ ALLOWED_HOSTS = [
     "www.photistheo.com",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://portfolio-site-production-759f.up.railway.app",
+    "https://www.photistheo.com",
+]
 
 # Application definition
 
