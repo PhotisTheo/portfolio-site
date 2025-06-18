@@ -40,12 +40,14 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "insecure-default-for-dev")
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "127.0.0.1",
     "localhost",
     "portfolio-site-production-759f.up.railway.app",
     "www.photistheo.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1",
     "https://portfolio-site-production-759f.up.railway.app",
     "https://www.photistheo.com",
 ]
