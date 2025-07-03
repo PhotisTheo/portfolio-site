@@ -6,30 +6,41 @@
 {% block content %}
 
 <!-- ==================== Start Header ==================== -->
-
 <header class="header-cst">
     <div class="container-fluid">
-        <div class="row sm-marg">
-            <div class="col-lg-6">
-                <div class="fit-img img">
-                    <img src="{% static 'assets/imgs/header/3.jpg' %}" alt="">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="fit-img img md-hide">
-                    <img src="{% static 'assets/imgs/header/4.jpg' %}" alt="">
-                </div>
-            </div>
+      <div class="row sm-marg">
+        <!-- Left Half Video -->
+        <div class="col-lg-6 p-0">
+          <div class="fit-img img">
+            <video autoplay muted loop playsinline class="video-half">
+              <source src="{% static 'assets/video/fire1.mov' %}" type="video/mp4">
+            </video>
+          </div>
         </div>
-        <div class="caption text-center">
-            <h1 class="title-font"> ILLUMINATE </h1>
-            <h4 class="mt-30 fw-300">Your Creative Presence, <br> Bring your Brand to Light with Us
-            </h4>
+  
+        <!-- Right Half Video -->
+        <div class="col-lg-6 p-0">
+          <div class="fit-img img md-hide">
+            <video autoplay muted loop playsinline class="video-half">
+              <source src="{% static 'assets/video/fire2.mp4' %}" type="video/mp4">
+            </video>
+          </div>
         </div>
+      </div>
+  
+      <!-- Caption -->
+      <div class="caption text-center">
+        <h1 class="title-font">ILLUMINATE</h1>
+        <h4 class="mt-30 fw-300">
+          Your Creative Presence, <br> Bring your Brand to Light with Us
+        </h4>
+      </div>
     </div>
-</header>
-
-<!-- ==================== End Header ==================== -->
+  </header>
+  
+  
+  <!-- ==================== End Header ==================== -->
+  
 
 
 <!-- ==================== Start Portfolio ==================== -->

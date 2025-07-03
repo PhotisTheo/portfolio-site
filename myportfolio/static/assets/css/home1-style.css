@@ -124,6 +124,38 @@
         border-radius: 50%;
         z-index: -1; }
 
+        /* Match the behavior of img in .fit-img .img */
+        .video-header {
+          position: relative;
+          min-height: 100vh;
+          overflow: hidden;
+          z-index: 1;
+        }
+        
+        .bg-video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          min-width: 100%;
+          min-height: 100%;
+          width: auto;
+          height: auto;
+          z-index: -1;
+          object-fit: cover;
+        }
+        
+        .video-header .container {
+          position: relative;
+          z-index: 2;
+          color: #fff;
+        }
+        
+        .video-header h1, .video-header h4 {
+          color: white;
+          text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+        }
+        
+
 /* --------------- Services --------------- */
 .services-sa .item {
   background: var(--bg-color);
