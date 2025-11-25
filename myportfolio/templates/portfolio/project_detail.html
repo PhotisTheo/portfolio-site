@@ -42,13 +42,19 @@
     </div>
 
     <div class="container-fluid">
-        <div class="fit-img radius-15">
+        <div class="fit-img radius-15 project-media">
             {% if project.media %}
                 {% if project.media.url|lower|slice:"-4:" == ".mp4" %}
-                    <video autoplay muted loop playsinline style="width: 100%; height: auto; object-fit: cover;">
-                        <source src="{{ project.media.url }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="position-relative">
+                        <video id="projectVideo" playsinline controls style="width: 100%; height: auto; object-fit: contain; background: #000;">
+                            <source src="{{ project.media.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-control-overlay" style="position: absolute; top: 16px; right: 16px; display: flex; gap: 8px; z-index: 2;">
+                            <button id="videoPlayPauseBtn" type="button" style="background: rgba(0,0,0,0.8); color: #fff; border: 1px solid #fff; border-radius: 999px; padding: 10px 16px; font-weight: 600; cursor: pointer;">⏸ Pause</button>
+                            <button id="videoMuteBtn" type="button" style="background: rgba(0,0,0,0.8); color: #fff; border: 1px solid #fff; border-radius: 999px; padding: 10px 16px; font-weight: 600; cursor: pointer;">🔇 Mute</button>
+                        </div>
+                    </div>
                 {% else %}
                     <img src="{{ project.media.url }}" alt="{{ project.title }}" data-lag="0" data-speed="0.5">
                 {% endif %}
@@ -174,4 +180,61 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block extra_js %}
+<style>
+/* Keep project detail hero media uncropped */
+.work-hed2 .fit-img.project-media {
+    height: auto !important;
+    overflow: visible;
+}
+.fit-img.project-media video {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 15px;
+    background: #000;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('projectVideo');
+    const playPauseBtn = document.getElementById('videoPlayPauseBtn');
+    const muteBtn = document.getElementById('videoMuteBtn');
+
+    if (!video || !playPauseBtn || !muteBtn) return;
+
+    // Sync button text with video state
+    const syncButtons = () => {
+        playPauseBtn.textContent = video.paused ? '▶ Play' : '⏸ Pause';
+        muteBtn.textContent = video.muted ? '🔇 Unmute' : '🔊 Mute';
+    };
+
+    playPauseBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+        syncButtons();
+    });
+
+    muteBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        video.muted = !video.muted;
+        syncButtons();
+    });
+
+    // Keep controls in sync if user uses native controls
+    video.addEventListener('play', syncButtons);
+    video.addEventListener('pause', syncButtons);
+    video.addEventListener('volumechange', syncButtons);
+
+    // Initialize labels
+    syncButtons();
+});
+</script>
 {% endblock %}

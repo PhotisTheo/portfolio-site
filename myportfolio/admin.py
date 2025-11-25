@@ -5,7 +5,8 @@ from .models import Project
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ("title", "featured")
+    list_display = ("title", "featured", "popup_featured", "category")
+    list_filter = ("featured", "popup_featured", "category")
     fields = (
         "title",
         "subtitle",
@@ -13,6 +14,8 @@ class ProjectAdmin(admin.ModelAdmin):
         "description",
         "media",
         "featured",
+        "popup_featured",
+        "popup_blurb",
         "featured_media",
         "body",
         "category",

@@ -9,18 +9,48 @@
     <div class="container section-padding">
         <div class="caption text-center">
             <h1>Portfolio</h1>
-            
         </div>
     </div>
 </header>
+
+<!-- ==================== Start Intro Section ==================== -->
+
+<div class="intro-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-80">
+                    <p style="font-size: 18px; line-height: 1.8; color: #888;">
+                        Hi, I'm Photis — a product-focused designer & Django developer.<br>
+                        I design and build websites and web apps end-to-end: UX, UI, and full-stack implementation.<br>
+                        Below are selected projects for civic agencies, restaurants, and architecture clients.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== End Intro Section ==================== -->
 
 <!-- ==================== Start Portfolio ==================== -->
 
 <div class="works-mp section-padding pt-0">
     <div class="container">
-        <div class="row md-marg gallery">
-            {% for project in projects %}
-            <div class="col-lg-4 items">
+
+        <!-- Category Filter Tabs -->
+        <div class="category-filters text-center mb-60">
+            <button class="filter-btn active" data-filter="all" style="margin: 0 10px; padding: 10px 25px; background: transparent; border: 2px solid #fff; color: #fff; cursor: pointer; font-size: 14px; transition: all 0.3s;">All</button>
+            <button class="filter-btn" data-filter="web-design" style="margin: 0 10px; padding: 10px 25px; background: transparent; border: 2px solid #666; color: #888; cursor: pointer; font-size: 14px; transition: all 0.3s;">Web Design</button>
+            <button class="filter-btn" data-filter="graphic-design" style="margin: 0 10px; padding: 10px 25px; background: transparent; border: 2px solid #666; color: #888; cursor: pointer; font-size: 14px; transition: all 0.3s;">Graphic Design</button>
+            <button class="filter-btn" data-filter="photography" style="margin: 0 10px; padding: 10px 25px; background: transparent; border: 2px solid #666; color: #888; cursor: pointer; font-size: 14px; transition: all 0.3s;">Photography</button>
+        </div>
+
+        <!-- All Projects Grid -->
+        <div class="row md-marg gallery" id="projectsGrid">
+            {% for project in all_projects %}
+            <div class="col-lg-4 items project-item {% if 'Web Design' in project.category or 'UI' in project.category or 'Web Dev' in project.category or 'Development' in project.category %}cat-web-design{% elif 'Graphic Design' in project.category %}cat-graphic-design{% elif 'Photography' in project.category %}cat-photography{% else %}cat-other{% endif %}"
+                 data-category="{% if 'Web Design' in project.category or 'UI' in project.category or 'Web Dev' in project.category or 'Development' in project.category %}web-design{% elif 'Graphic Design' in project.category %}graphic-design{% elif 'Photography' in project.category %}photography{% else %}other{% endif %}">
                 <div class="item">
                     <div class="cont d-flex align-items-center">
                         <div>
@@ -44,15 +74,509 @@
                                 <img src="{{ project.media.url }}" alt="{{ project.title }}">
                             {% endif %}
                         {% endif %}
-
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
+
+        <!-- OLD GROUPED LAYOUT (Hidden, kept for reference) -->
+        <div style="display: none;">
+        <!-- Web Design Projects -->
+        {% if web_design_projects %}
+        <div class="category-section mb-80">
+            <h2 class="mb-50" style="font-size: 32px; font-weight: 600;">Web Design</h2>
+            <div class="row md-marg gallery">
+                {% for project in web_design_projects %}
+                <div class="col-lg-4 items">
+                    <div class="item">
+                        <div class="cont d-flex align-items-center">
+                            <div>
+                                <h5>{{ project.title }}</h5>
+                                <span>{{ project.description }}</span>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="{{ project.get_absolute_url }}">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="img">
+                            {% if project.media %}
+                                {% if project.media.url|is_video %}
+                                    <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
+                                        <source src="{{ project.media.url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% else %}
+                                    <img src="{{ project.media.url }}" alt="{{ project.title }}">
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Graphic Design Projects -->
+        {% if graphic_design_projects %}
+        <div class="category-section mb-80">
+            <h2 class="mb-50" style="font-size: 32px; font-weight: 600;">Graphic Design</h2>
+            <div class="row md-marg gallery">
+                {% for project in graphic_design_projects %}
+                <div class="col-lg-4 items">
+                    <div class="item">
+                        <div class="cont d-flex align-items-center">
+                            <div>
+                                <h5>{{ project.title }}</h5>
+                                <span>{{ project.description }}</span>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="{{ project.get_absolute_url }}">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="img">
+                            {% if project.media %}
+                                {% if project.media.url|is_video %}
+                                    <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
+                                        <source src="{{ project.media.url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% else %}
+                                    <img src="{{ project.media.url }}" alt="{{ project.title }}">
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Photography Projects -->
+        {% if photography_projects %}
+        <div class="category-section mb-80">
+            <h2 class="mb-50" style="font-size: 32px; font-weight: 600;">Photography</h2>
+            <div class="row md-marg gallery">
+                {% for project in photography_projects %}
+                <div class="col-lg-4 items">
+                    <div class="item">
+                        <div class="cont d-flex align-items-center">
+                            <div>
+                                <h5>{{ project.title }}</h5>
+                                <span>{{ project.description }}</span>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="{{ project.get_absolute_url }}">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="img">
+                            {% if project.media %}
+                                {% if project.media.url|is_video %}
+                                    <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
+                                        <source src="{{ project.media.url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% else %}
+                                    <img src="{{ project.media.url }}" alt="{{ project.title }}">
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        </div>
+        <!-- END OLD LAYOUT -->
+
     </div>
 </div>
 
 <!-- ==================== End Portfolio ==================== -->
 
+<!-- ==================== Featured Project Popup Modal ==================== -->
+{% if popup_project %}
+<div class="modal fade" id="featuredProjectModal" tabindex="-1" aria-labelledby="featuredProjectModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 800px;">
+        <div class="modal-content" style="background-color: #1a1a1a; border: 1px solid #333;">
+            <div class="modal-header" style="border-bottom: 1px solid #333;">
+                <h5 class="modal-title" id="featuredProjectModalLabel" style="color: #fff;">{{ popup_project.title }}</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Video Section -->
+                {% if popup_project.media %}
+                <div style="position: relative; width: 100%; background: #000;">
+                    <div class="video-container mb-4" style="width: 100%; background: #000;">
+                        {% if popup_project.media.url|is_video %}
+                            <video id="popupVideo" autoplay loop playsinline controls controlsList="nodownload" style="width: 100%; height: auto; display: block;">
+                                <source src="{{ popup_project.media.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% else %}
+                            <img src="{{ popup_project.media.url }}" alt="{{ popup_project.title }}" style="width: 100%; height: auto; display: block;">
+                        {% endif %}
+                    </div>
+
+                    {% if popup_project.media.url|is_video %}
+                    <!-- Custom video controls overlay -->
+                    <div style="position: absolute; top: 20px; right: 20px; z-index: 9999;">
+                        <!-- Play/Pause button -->
+                        <button type="button" id="playPauseBtn" style="background: rgba(0,0,0,0.9); color: white; border: 2px solid white; border-radius: 50px; padding: 12px 24px; cursor: pointer; font-size: 14px; font-weight: 600; margin-bottom: 10px; display: block; width: 100%; white-space: nowrap;">
+                            ⏸ Pause
+                        </button>
+                        <!-- Unmute button -->
+                        <button type="button" id="unmuteBtn" style="background: rgba(0,0,0,0.9); color: white; border: 2px solid white; border-radius: 50px; padding: 12px 24px; cursor: pointer; font-size: 14px; font-weight: 600; display: none; width: 100%; white-space: nowrap;">
+                            🔊 Unmute
+                        </button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- Project Info -->
+                <div class="project-info" style="color: #ccc;">
+                    <p style="font-size: 16px; line-height: 1.8;">
+                        {{ popup_project.popup_blurb|default:popup_project.description }}
+                    </p>
+
+                    {% if popup_project.category or popup_project.client %}
+                    <div class="meta-info mt-3" style="font-size: 14px; color: #888;">
+                        {% if popup_project.category %}
+                        <span class="me-3"><strong>Category:</strong> {{ popup_project.category }}</span>
+                        {% endif %}
+                        {% if popup_project.client %}
+                        <span><strong>Client:</strong> {{ popup_project.client }}</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #333;">
+                <a href="{{ popup_project.get_absolute_url }}" class="btn btn-primary" style="background-color: #007bff; border: none;">View Full Project</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #444; border: none;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- ==================== End Featured Project Popup Modal ==================== -->
+
 {% endblock content %}
+
+{% block extra_js %}
+<style>
+    /* Filter button hover effects */
+    .filter-btn:hover {
+        border-color: #fff !important;
+        color: #fff !important;
+    }
+
+    .filter-btn.active {
+        border-color: #fff !important;
+        color: #fff !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Hidden projects - removed from layout flow */
+    .project-item.hidden {
+        display: none !important;
+    }
+
+    {% if popup_project %}
+    /* Ensure modal is properly centered */
+    #featuredProjectModal .modal-dialog {
+        display: flex;
+        align-items: center;
+        min-height: calc(100vh - 1rem);
+    }
+
+    /* Keep modal clickable even when ScrollSmoother disables the page */
+    body.modal-open #featuredProjectModal,
+    body.modal-open #featuredProjectModal * {
+        pointer-events: auto !important;
+    }
+
+    /* Backdrop styling */
+    .modal-backdrop {
+        background-color: rgba(0, 0, 0, 0.8) !important;
+        z-index: 1050 !important;
+    }
+
+    /* Modal must be above backdrop and everything else */
+    #featuredProjectModal {
+        z-index: 1055 !important;
+        pointer-events: auto !important;
+    }
+
+    #featuredProjectModal .modal-dialog {
+        pointer-events: auto !important;
+    }
+
+    #featuredProjectModal .modal-content {
+        pointer-events: auto !important;
+    }
+
+    #featuredProjectModal button {
+        pointer-events: auto !important;
+    }
+
+    /* Ensure modal shows above smooth-wrapper */
+    .modal-open #smooth-wrapper,
+    .modal-open #smooth-content {
+        pointer-events: none !important;
+    }
+    {% endif %}
+</style>
+
+<script>
+    // Category filtering functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+        const hasIsotope = typeof window.jQuery !== 'undefined' && !!window.jQuery.fn.isotope;
+        const $grid = hasIsotope ? window.jQuery('#projectsGrid') : null;
+
+        // If Isotope is available, use it for proper reflow; otherwise fall back to simple show/hide.
+        const applyFilter = function(filter) {
+            if (hasIsotope && $grid) {
+                const selector = filter === 'all' ? '*' : '.cat-' + filter;
+                $grid.isotope({ filter: selector });
+            } else {
+                projectItems.forEach(function(item) {
+                    if (filter === 'all') {
+                        item.classList.remove('hidden');
+                    } else {
+                        const itemCategory = item.getAttribute('data-category');
+                        if (itemCategory === filter) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    }
+                });
+            }
+        };
+
+        filterButtons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+
+                // Update active button
+                filterButtons.forEach(function(b) {
+                    b.classList.remove('active');
+                    b.style.borderColor = '#666';
+                    b.style.color = '#888';
+                });
+                this.classList.add('active');
+                this.style.borderColor = '#fff';
+                this.style.color = '#fff';
+
+                applyFilter(filter);
+            });
+        });
+
+        // Initialize Isotope layout if available
+        if (hasIsotope && $grid) {
+            $grid.isotope({ itemSelector: '.project-item', layoutMode: 'fitRows' });
+            // Apply default filter to ensure layout starts aligned
+            applyFilter('all');
+        }
+    });
+
+    {% if popup_project %}
+    // Show the featured project modal when page loads
+    function initPopupModal() {
+        console.log('Initializing popup modal...');
+
+        // Check if user has already seen the popup on THIS PAGE LOAD (not session-wide)
+        const currentPageKey = 'featuredProjectPopupSeen_' + window.location.pathname;
+        const hasSeenPopup = sessionStorage.getItem(currentPageKey);
+        console.log('Has seen popup on this visit:', hasSeenPopup);
+
+        if (!hasSeenPopup) {
+            const modalElement = document.getElementById('featuredProjectModal');
+
+            // Move the modal to <body> so GSAP transforms on the wrapper don't block clicks
+            if (modalElement && modalElement.parentElement !== document.body) {
+                document.body.appendChild(modalElement);
+            }
+
+            console.log('Modal element found:', !!modalElement);
+            console.log('Bootstrap available:', typeof bootstrap !== 'undefined');
+
+            if (modalElement && typeof bootstrap !== 'undefined') {
+                console.log('Using Bootstrap modal...');
+                const modal = new bootstrap.Modal(modalElement, {
+                    backdrop: 'static',
+                    keyboard: true
+                });
+
+                // Disable ScrollSmoother when modal opens
+                modalElement.addEventListener('show.bs.modal', function () {
+                    // Pause ScrollSmoother if it exists
+                    if (window.ScrollSmoother && window.ScrollSmoother.get()) {
+                        window.ScrollSmoother.get().paused(true);
+                    }
+                });
+
+                // Event listener to handle video when modal is shown
+                let controlsInitialized = false;
+                modalElement.addEventListener('shown.bs.modal', function () {
+                    const video = document.getElementById('popupVideo');
+                    const unmuteBtn = document.getElementById('unmuteBtn');
+                    const playPauseBtn = document.getElementById('playPauseBtn');
+
+                    console.log('Modal shown, video:', !!video, 'unmuteBtn:', !!unmuteBtn, 'playPauseBtn:', !!playPauseBtn);
+
+                    if (video) {
+                        // Helpers to manage audio state with user gestures
+                        const showUnmute = function() {
+                            if (unmuteBtn) {
+                                unmuteBtn.style.display = video.muted ? 'block' : 'none';
+                            }
+                        };
+
+                        const startMutedPlayback = function() {
+                            video.muted = true;
+                            const mutedPlay = video.play();
+                            if (mutedPlay && mutedPlay.catch) {
+                                mutedPlay.catch(function(err) {
+                                    console.log('Muted autoplay failed:', err);
+                                });
+                            }
+                            showUnmute();
+                        };
+
+                        const playWithAudio = function() {
+                            video.muted = false;
+                            const audioPlay = video.play();
+                            if (audioPlay && audioPlay.catch) {
+                                audioPlay.catch(function(err) {
+                                    console.log('Audio playback blocked, keeping muted:', err);
+                                    startMutedPlayback();
+                                });
+                            } else {
+                                showUnmute();
+                            }
+                        };
+
+                        // Start muted to satisfy autoplay policies, then allow the user to unmute
+                        startMutedPlayback();
+
+                        // Only initialize controls once
+                        if (!controlsInitialized) {
+                            console.log('Initializing control button handlers...');
+
+                            // Unmute button click handler
+                            if (unmuteBtn) {
+                                unmuteBtn.style.display = 'block';
+                                unmuteBtn.onclick = function(e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    console.log('Unmute clicked');
+                                    playWithAudio();
+                                };
+                                console.log('Unmute handler attached');
+                            }
+
+                            // Play/Pause button click handler
+                            if (playPauseBtn) {
+                                playPauseBtn.onclick = function(e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    console.log('Play/Pause clicked, video.paused:', video.paused);
+                                    if (video.paused) {
+                                        playWithAudio();
+                                        playPauseBtn.textContent = '⏸ Pause';
+                                    } else {
+                                        video.pause();
+                                        playPauseBtn.textContent = '▶ Play';
+                                    }
+                                };
+                                console.log('Play/Pause handler attached');
+
+                                // Update button when video plays/pauses from other controls
+                                video.addEventListener('play', function() {
+                                    playPauseBtn.textContent = '⏸ Pause';
+                                });
+                                video.addEventListener('pause', function() {
+                                    playPauseBtn.textContent = '▶ Play';
+                                });
+                                video.addEventListener('volumechange', showUnmute);
+
+                                // Allow clicking the video itself to enable audio
+                                video.addEventListener('click', function() {
+                                    if (video.muted) {
+                                        playWithAudio();
+                                    }
+                                });
+                            }
+
+                            controlsInitialized = true;
+                        }
+                    }
+                });
+
+                // Event listener to pause video when modal is hidden
+                modalElement.addEventListener('hidden.bs.modal', function () {
+                    const video = document.getElementById('popupVideo');
+                    if (video) {
+                        video.pause();
+                        video.currentTime = 0;
+                    }
+                    // Re-enable ScrollSmoother
+                    if (window.ScrollSmoother && window.ScrollSmoother.get()) {
+                        window.ScrollSmoother.get().paused(false);
+                    }
+                });
+
+                // Show the modal
+                modal.show();
+
+                // Mark as seen for this page visit
+                sessionStorage.setItem(currentPageKey, 'true');
+            } else if (modalElement) {
+                console.error('Bootstrap not available!');
+            } else {
+                console.error('Modal element not found!');
+            }
+        } else {
+            console.log('User has already seen the popup on this page visit');
+        }
+    }
+
+    // Wait for both DOM and Bootstrap to be ready
+    if (typeof bootstrap !== 'undefined') {
+        // Bootstrap already loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(initPopupModal, 500);
+            });
+        } else {
+            setTimeout(initPopupModal, 500);
+        }
+    } else {
+        // Wait for Bootstrap to load
+        window.addEventListener('load', function() {
+            setTimeout(initPopupModal, 800);
+        });
+    }
+
+    // Clear the popup seen flag when navigating away
+    window.addEventListener('beforeunload', function() {
+        const currentPageKey = 'featuredProjectPopupSeen_' + window.location.pathname;
+        sessionStorage.removeItem(currentPageKey);
+    });
+    {% endif %}
+</script>
+{% endblock extra_js %}

@@ -30,6 +30,8 @@ class Project(models.Model):
     start_date = models.DateField(blank=True, null=True)
     designer = models.CharField(max_length=100, blank=True)
     featured = models.BooleanField(default=False)
+    popup_featured = models.BooleanField(default=False, help_text="Show this project in a popup on the portfolio page")
+    popup_blurb = models.TextField(blank=True, help_text="Short description for the popup (optional, uses main description if empty)")
 
     featured_media = models.FileField(
         upload_to="projects/featured/",

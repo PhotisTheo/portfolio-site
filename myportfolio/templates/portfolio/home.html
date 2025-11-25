@@ -44,7 +44,6 @@
 
 
 <!-- ==================== Start Portfolio ==================== -->
-
 <section class="work-card section-padding">
     <div class="container-xxl">
       <div class="cards">
@@ -63,20 +62,24 @@
                   {% endif %}
                 {% endwith %}
               {% endif %}
-              <div class="tags">
-                {% if project.category %}
-                  <a href="#0">{{ project.category }}</a>
-                {% endif %}
-                {% if project.client %}
-                  <a href="#0">{{ project.client }}</a>
-                {% endif %}
-                {% if project.designer %}
-                  <a href="#0">{{ project.designer }}</a>
-                {% endif %}
+  
+              <!-- Meta block: tags + title -->
+              <div class="card-meta">
+                <div class="tags">
+                  {% if project.category %}
+                    <a href="#0">{{ project.category }}</a>
+                  {% endif %}
+                  {% if project.client %}
+                    <a href="#0">{{ project.client }}</a>
+                  {% endif %}
+                  {% if project.designer %}
+                    <a href="#0">{{ project.designer }}</a>
+                  {% endif %}
+                </div>
+                <h5 class="bottom left">
+                  <a>{{ project.title }}</a>
+                </h5>
               </div>
-              <h5 class="bottom left">
-                <a>{{ project.title }}</a>
-              </h5>
             </div>
           </a>
         </div>
@@ -84,8 +87,6 @@
       </div>
     </div>
   </section>
-  
-
 <!-- ==================== End Portfolio ==================== -->
 <!-- ==================== Start marquee ==================== -->
 

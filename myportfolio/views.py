@@ -20,8 +20,38 @@ from .models import Project
 
 
 def portfolio(request):
-    projects = Project.objects.all().order_by("-start_date")  # Newest first
-    return render(request, "portfolio/portfolio.html", {"projects": projects})
+    # Get popup featured project
+    popup_project = Project.objects.filter(popup_featured=True).first()
+
+    # Get all projects for client-side filtering
+    all_projects = Project.objects.all().order_by("-start_date")
+
+    # Group projects by category (server-side, kept for backwards compatibility)
+    web_design_projects = Project.objects.filter(
+        category__icontains="Web Design"
+    ).order_by("-start_date") | Project.objects.filter(
+        category__icontains="UI"
+    ).order_by("-start_date") | Project.objects.filter(
+        category__icontains="Web Dev"
+    ).order_by("-start_date") | Project.objects.filter(
+        category__icontains="Development"
+    ).order_by("-start_date")
+
+    graphic_design_projects = Project.objects.filter(
+        category__icontains="Graphic Design"
+    ).order_by("-start_date")
+
+    photography_projects = Project.objects.filter(
+        category__icontains="Photography"
+    ).order_by("-start_date")
+
+    return render(request, "portfolio/portfolio.html", {
+        "popup_project": popup_project,
+        "all_projects": all_projects,
+        "web_design_projects": web_design_projects.distinct(),
+        "graphic_design_projects": graphic_design_projects,
+        "photography_projects": photography_projects,
+    })
 
 
 def project_detail(request, slug):
